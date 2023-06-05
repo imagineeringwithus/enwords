@@ -19,7 +19,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
   _changeMenu(ChangeMenuDashboardEvent event, emit) {
     emit(state.update(menu: event.menu));
-    setFriendlyRouteName(
-        title: event.menu.text, url: 'dashboard/${event.menu.name}');
+    // setFriendlyRouteName(
+    //     title: event.menu.text, url: 'dashboard/${event.menu.name}');
   }
 }

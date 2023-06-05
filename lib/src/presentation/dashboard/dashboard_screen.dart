@@ -1,5 +1,6 @@
 import 'package:_imagineeringwithus_pack/_imagineeringwithus_pack.dart';
 import 'package:enwords/src/base/bloc.dart';
+import 'package:enwords/src/presentation/widgets/respon_layout.dart';
 import 'package:enwords/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,7 +63,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
               return Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+                    EdgeInsets.all(responByWidth(context, 16, computer: 24)),
                 child: Column(
                   children: [
                     Row(
@@ -79,6 +80,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         ),
                         const Spacer(),
+                        Text(
+                          state.menu.text,
+                          style: w600TextStyle(fontSize: 28),
+                        ),
+                        kSpacingHeight32,
                       ],
                     ),
                     const SizedBox(

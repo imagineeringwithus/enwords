@@ -51,26 +51,6 @@ class _WordsScreenState extends State<WordsScreen> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    "Words",
-                    style: w600TextStyle(fontSize: 28),
-                  ),
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    "(${state.count} rows)",
-                    style: w400TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-              kSpacingHeight32,
               buildHeader(state),
               kSpacingHeight32,
               Expanded(
