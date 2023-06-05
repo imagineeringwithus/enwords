@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart'; 
+import 'package:bloc/bloc.dart';
 import 'package:enwords/src/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:equatable/equatable.dart';
@@ -32,7 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   _load(AuthLoad event, Emitter<AuthState> emit) async {
     User? user;
     try {
-      if (kDebugMode) await FirebaseAuth.instance.signInAnonymously();
+      await FirebaseAuth.instance.signInAnonymously();
       if (FirebaseAuth.instance.currentUser != null) {
         user = FirebaseAuth.instance.currentUser;
         emit(state.update(stateType: AuthStateType.logged));

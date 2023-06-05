@@ -22,7 +22,7 @@ extension DashboardMenuExt on DashboardMenu {
   String get text {
     switch (this) {
       case DashboardMenu.words:
-        return 'Languages'; 
+        return 'Words'; 
       case DashboardMenu.reports:
         return 'Reports';
     }
