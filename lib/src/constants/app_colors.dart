@@ -1,7 +1,7 @@
 import 'package:_imagineeringwithus_pack/_imagineeringwithus_pack.dart';
 import 'package:flutter/material.dart';
-import 'package:enwords/src/base/theme_bloc/widgets/widget_theme_wraper.dart';
 
+import '../base/theme_bloc/widgets/widget_theme_wraper.dart'; 
 class AppColors extends AppColorsBase {
   AppColors._();
 

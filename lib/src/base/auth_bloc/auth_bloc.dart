@@ -1,11 +1,17 @@
 import 'dart:async';
- 
+
 import 'package:bloc/bloc.dart'; 
-import 'package:equatable/equatable.dart'; 
+import 'package:enwords/src/utils/utils.dart';
+import 'package:flutter/foundation.dart';
+import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 enum AuthStateType { none, logged }
+
+String? get loggedUid => findInstance<AuthBloc>().state.user?.uid;
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   StreamSubscription? _subscription;
@@ -24,18 +30,29 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   _load(AuthLoad event, Emitter<AuthState> emit) async {
+    User? user;
     try {
-      emit(state.update(stateType: AuthStateType.logged));
+      if (kDebugMode) await FirebaseAuth.instance.signInAnonymously();
+      if (FirebaseAuth.instance.currentUser != null) {
+        user = FirebaseAuth.instance.currentUser;
+        emit(state.update(stateType: AuthStateType.logged));
+      } else {
+        emit(state.update(stateType: AuthStateType.none));
+      }
     } catch (e) {
       emit(state.update(stateType: AuthStateType.none));
     }
     if (state.stateType == AuthStateType.logged) {
-      // state.user = user;
-      // _subscription?.cancel();
-      // _subscription =
-      //     FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      //   add(AuthUpdateUser(user: user));
-      // });
+      state.user = user;
+      _subscription?.cancel();
+      _subscription =
+          FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        add(AuthUpdateUser(user: user));
+      });
+      // appDebugPrint('[auth]: ${user?.toString()}');
+      // if (user?.phoneNumber == null) {
+      //   throw Exception('[auth]:phoneNumber can\'t null');
+      // }
     }
 
     await Future.delayed(event.delay);
@@ -53,6 +70,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   _redirect() {
     if (state.stateType == AuthStateType.logged) {
       // Get.offAllNamed(Routes.nav);
-    } else {}
+    } else {
+      // showDialog(
+      //     context: navigatorKey.currentContext!,
+      //     builder: (_) => const AuthenticateScreen());
+    }
   }
 }

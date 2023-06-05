@@ -15,12 +15,7 @@ T responByWidth2<T>(context, T size, [T? tablet, T? phone]) {
   return size;
 }
 
-bool isPhoneByWidth() => logicalWidth < ResponLayout.phoneLimit;
-
-//Size in logical pixels
-get logicalScreenSize => window.physicalSize / window.devicePixelRatio;
-get logicalWidth => logicalScreenSize.width;
-get logicalHeight => logicalScreenSize.height;
+bool isComputerByWidth(context) => ResponLayout.isComputer(context); 
 
 class ResponLayout extends StatelessWidget {
   final Widget phone;

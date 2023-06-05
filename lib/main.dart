@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,12 +19,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initEasyLocalization();
   if (kIsWeb) {
-    // await Firebase.initializeApp(
-    //   options: firebaseOptionsPREPROD,
-    // );
+    await Firebase.initializeApp(
+      options: firebaseOptionsPREPROD,
+    );
     setPathUrlStrategy();
   } else if (!Platform.isWindows) {
-    // await Firebase.initializeApp();
+    await Firebase.initializeApp();
   }
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
