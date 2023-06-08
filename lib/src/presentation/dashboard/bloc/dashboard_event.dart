@@ -7,7 +7,10 @@ abstract class DashboardEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class InitDashboardEvent extends DashboardEvent {}
+class InitDashboardEvent extends DashboardEvent {
+  final DashboardMenu? menu;
+  const InitDashboardEvent({this.menu});
+}
 
 class ChangeMenuDashboardEvent extends DashboardEvent {
   final DashboardMenu menu;

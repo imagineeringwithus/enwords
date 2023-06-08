@@ -26,7 +26,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     findInstance<AuthBloc>().add(const AuthLoad());
-    _bloc.add(InitDashboardEvent());
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (findInstance<AuthBloc>().state.stateType == AuthStateType.logged) {
         _bloc.add(InitDashboardEvent());

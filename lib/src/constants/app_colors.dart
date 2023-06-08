@@ -1,7 +1,8 @@
 import 'package:_imagineeringwithus_pack/_imagineeringwithus_pack.dart';
 import 'package:flutter/material.dart';
 
-import '../base/theme_bloc/widgets/widget_theme_wraper.dart'; 
+import '../base/theme_bloc/widgets/widget_theme_wraper.dart';
+
 class AppColors extends AppColorsBase {
   AppColors._();
 
@@ -19,7 +20,7 @@ class AppColors extends AppColorsBase {
   Color get element => byTheme(Colors.grey[200]!, kdark: Colors.grey[200]!);
 
   @override
-  Color get primary => byTheme(hexColor('00BDF9'));
+  Color get primary => text;
 
   @override
   Color get shimerHighlightColor => byTheme(hexColor('#1C222C'));

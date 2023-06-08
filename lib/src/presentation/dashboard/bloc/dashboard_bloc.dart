@@ -14,7 +14,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   }
 
   _init(InitDashboardEvent event, emit) {
-    add(const ChangeMenuDashboardEvent(DashboardMenu.words));
+    add(ChangeMenuDashboardEvent(event.menu ?? DashboardMenu.words));
   }
 
   _changeMenu(ChangeMenuDashboardEvent event, emit) {
